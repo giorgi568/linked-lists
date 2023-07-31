@@ -155,7 +155,7 @@ class LinkedList {
 			let newNode = new Node(value, node);
 			return this.head.nextNode = newNode
 		}else if(index < 0 || !Number.isInteger(index)){
-			throw 'index must be positive number'
+			throw 'index must be positive integer'
 		}
 
 		for(let i = 0; i < index-1; i++){
@@ -167,8 +167,41 @@ class LinkedList {
 		}
 		let newNode = new Node(value, node.nextNode);
 		node.nextNode = newNode;
-		// console.log(node)
-		// node.nextNode = new Node(value.nextNode.nextNode)
+	}
+
+	removeAt(index) {
+		let node;
+
+		if(this.head.nextNode) {
+			node = this.head.nextNode;
+		}else{
+			if(index === 0){
+				return this.head.nextNode = new Node(value);
+			}else{
+				throw 'index out of range'
+			}
+		}
+
+		if(index === 0){
+			return this.head.nextNode = node.nextNode
+		}else if(index < 0 || !Number.isInteger(index)){
+			throw 'index must be positive integer'
+		}
+
+		for(let i = 0; i < index-1; i++){
+			if(node.nextNode){
+				node = node.nextNode;
+			}else{
+				throw 'index out of range'
+			}
+		}
+
+		// console.log(node);
+		if(node.nextNode){
+			return node.nextNode = node.nextNode.nextNode;
+		}else{
+			throw 'index out of range'
+		}
 
 	}
 }
@@ -198,9 +231,10 @@ newList.prepend('dada');
 // console.log(newList);
 // console.log(secList.at(0));
 console.log(newList.toString());
-newList.insertAt('g', 2);
+newList.removeAt(4);
+// console.log(newList.at(3))
 console.log(newList.toString());
-
+// console.log(newList.at(2))
 // secList.append('ii');
 // secList.append('bb');
 // secList.append('ll');
